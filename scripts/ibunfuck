@@ -1,6 +1,8 @@
 #!/usr/local/bin/python
 
+import git
 import sys
+
 from ibunfuck import UnfuckPatch
 
 
