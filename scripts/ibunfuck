@@ -1,0 +1,19 @@
+#!/usr/local/bin/python
+
+import sys
+from ibunfuck import UnfuckPatch
+
+
+def main():
+    repository_path = sys.argv[1] if len(sys.argv) == 2 else "."
+    try:
+        unfuck = UnfuckPatch(repository_path)
+    except git.exc.InvalidGitRepositoryError:
+        print "Error: Current path is not a git repository\n"
+        print "Usage: %s <repository path>" % sys.argv[0]
+
+    unfuck.clear()
+
+
+if __name__ == "__main__":
+    main()
