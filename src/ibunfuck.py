@@ -25,19 +25,6 @@ class UnfuckPatch(object):
     def __init__(self, path):
         self.repository = git.Repo(path)
 
-    def _clear_undo(self, undo, patch):
-        has_changes = False
-        for i, patch_piece in enumerate(patch):
-            for j, hunk in enumerate(patch_piece[::-1]):
-                if not all(p(hunk) for p in self.processors):
-                    continue
-
-                del undo[i][len(patch_piece) - j - 1]
-
-            has_changes = has_changes or len(undo[i]) > 0
-
-        return has_changes
-
     def _clear_patch(self, patch, processors):
         has_changes = False
         for i, patch_piece in enumerate(patch):
