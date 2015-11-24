@@ -1,7 +1,7 @@
 class IbUnfuckGit < Formula
   desc "Removes unnecessary changes from iOS/OSX repositories"
   homepage "https://github.com/Reflejo/ib-unfuck-git"
-  url "https://github.com/Reflejo/ib-unfuck-git/archive/v0.1.tar.gz"
+  url "https://github.com/Reflejo/ib-unfuck-git/archive/v0.2.tar.gz"
 
   depends_on :python if MacOS.version <= :snow_leopard
 
