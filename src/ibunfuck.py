@@ -28,11 +28,12 @@ class UnfuckPatch(object):
     def _clear_patch(self, patch, processors):
         has_changes = False
         for i, patch_piece in enumerate(patch):
+            length = len(patch_piece)
             for j, hunk in enumerate(patch_piece[::-1]):
                 if not all(p(hunk) for p in processors):
                     continue
 
-                del patch[i][len(patch_piece) - j - 1]
+                del patch[i][length - j - 1]
 
             has_changes = has_changes or len(patch[i]) > 0
 

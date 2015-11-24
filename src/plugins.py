@@ -23,8 +23,14 @@ class IBPlugin(object):
     @classmethod
     def _is_valid_dimension(klass, hunk, tag, properties):
         minus, plus = klass._xml_changes(hunk)
+        if any(x.tag != tag for x in minus + plus):
+            return True
+
         if len(minus) == 1 and len(plus) == 1:
             mnode, pnode = minus[0], plus[0]
+            if mnode.tag != pnode.tag or mnode.tag != tag or pnode.tag != tag:
+                return True
+
             is_right_tag = mnode.tag == pnode.tag == tag
             diffs = [abs(float(mnode.attrib[p]) - float(pnode.attrib[p]))
                      for p in properties]
