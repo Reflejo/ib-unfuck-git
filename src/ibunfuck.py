@@ -52,7 +52,11 @@ class UnfuckPatch(object):
         index = self.repository.index
         patches = index.diff(None, create_patch=True, U=0)
         for patch in patches:
-            patch = unidiff.PatchSet(StringIO(patch.diff))
+            try:
+                patch = unidiff.PatchSet(StringIO(patch.diff))
+            except Exception, e:
+                print "Unhandled error %s, continuing..." % str(e)
+                continue
 
             if self._clear_patch(patch, processors):
                 patchpath = tempfile.mktemp()
