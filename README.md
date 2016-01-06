@@ -11,3 +11,10 @@ Install
 ```bash
 $ brew install https://raw.githubusercontent.com/Reflejo/ib-unfuck-git/master/Formula/ib-unfuck-git.rb
 ```
+
+Usage
+-------
+
+Important: Make sure your changes are still in unstaged state only then this will remove the unwanted changes.
+
+Run `ibunfuck` command from your repository directory to remove the unwanted changes.
