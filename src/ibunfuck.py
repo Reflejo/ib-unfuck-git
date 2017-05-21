@@ -5,7 +5,7 @@ import sys
 import tempfile
 import unidiff
 
-from cStringIO import StringIO
+from StringIO import StringIO
 from plugins import IBPlugin
 
 
@@ -53,7 +53,7 @@ class UnfuckPatch(object):
         patches = index.diff(None, create_patch=True, unified=0)
         for patch in patches:
             try:
-                patch = unidiff.PatchSet(StringIO(patch.diff))
+                patch = unidiff.PatchSet(StringIO(patch.diff.decode('utf-8')))
             except Exception, e:
                 print "Unhandled error %s, continuing..." % str(e)
                 continue
