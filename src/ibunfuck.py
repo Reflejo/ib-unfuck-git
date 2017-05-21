@@ -5,7 +5,7 @@ import sys
 import tempfile
 import unidiff
 
-from cStringIO import StringIO
+from io import StringIO
 from plugins import IBPlugin
 
 
@@ -50,12 +50,12 @@ class UnfuckPatch(object):
         """
         processors = processors or self.default_processors
         index = self.repository.index
-        patches = index.diff(None, create_patch=True, U=0)
+        patches = index.diff(None, create_patch=True, unified=0)
         for patch in patches:
             try:
-                patch = unidiff.PatchSet(StringIO(patch.diff))
-            except Exception, e:
-                print "Unhandled error %s, continuing..." % str(e)
+                patch = unidiff.PatchSet(StringIO(patch.diff.decode('utf-8')))
+            except Exception as e:
+                print("Unhandled error %s, continuing..." % str(e))
                 continue
 
             if self._clear_patch(patch, processors):
@@ -72,8 +72,8 @@ def main():
     try:
         unfuck = UnfuckPatch(repository_path)
     except git.exc.InvalidGitRepositoryError:
-        print "Error: Current path is not a git repository\n"
-        print "Usage: %s <repository path>" % sys.argv[0]
+        print("Error: Current path is not a git repository\n")
+        print("Usage: %s <repository path>" % sys.argv[0])
 
     unfuck.clear()
 
