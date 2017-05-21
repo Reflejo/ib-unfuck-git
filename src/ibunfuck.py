@@ -50,7 +50,7 @@ class UnfuckPatch(object):
         """
         processors = processors or self.default_processors
         index = self.repository.index
-        patches = index.diff(None, create_patch=True, U=0)
+        patches = index.diff(None, create_patch=True, unified=0)
         for patch in patches:
             try:
                 patch = unidiff.PatchSet(StringIO(patch.diff))

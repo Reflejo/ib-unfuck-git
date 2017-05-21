@@ -18,8 +18,7 @@ setup(
     author='Martin Conte Mac Donell',
     author_email='Reflejo@gmail.com',
     license='MIT',
-    install_requires=['unidiff', 'gitpython', 'lxml'],
+    install_requires=['unidiff', 'gitpython<2', 'lxml'],
     packages=["."],
     scripts=['../scripts/ibunfuck']
 )
-
